@@ -2,6 +2,9 @@ import robin_stocks.robinhood as rh
 from datetime import datetime as dt
 from time import sleep
 import select, sys
+def get_symbol_from_instrument_url(instrument_url):
+    instrument_data = rh.helper.request_get(instrument_url, 'regular', jsonify_data=True)
+    return instrument_data['symbol'] if instrument_data else None
 
 print("\033cLogging in...\r", end="")
 rh.authentication.login()
@@ -52,13 +55,14 @@ while(True):
         for to_buy in to_buys:
             has_traded=False
             for order in orders:
-                if(to_buy==order['instrument'].split('/')[-2]):
+                if(to_buy==get_symbol_from_instrument_url(order['instrument'])):
                     has_traded=True
                     if(order["state"]=="filled"):
                         if((dt.now()-dt.strptime(order['last_transaction_at'], "%Y-%m-%dT%H:%M:%SZ")).total_seconds()/3600>24):
                             temp.append(to_buy)
                     else:
                         temp.append(to_buy)
+                    break
             if(not has_traded):
                 temp.append(to_buy)
         to_buys = temp[:]
@@ -99,12 +103,13 @@ while(True):
     for to_sell in to_sells:
         orders=rh.orders.get_all_stock_orders()
         for order in orders:
-            if(to_buy==order['instrument'].split('/')[-2]):
+            if(to_sell==get_symbol_from_instrument_url(order['instrument'])):
                 if(order["state"]=="filled"):
                     if((dt.now()-dt.strptime(order['last_transaction_at'], "%Y-%m-%dT%H:%M:%SZ")).total_seconds()/3600>24):
                         temp.append(to_sell)
                 else:
                     temp.append(to_sell)
+                break
     to_sells = temp[:]
     print(31*" ", "\rBest sells complete: ", to_sells)
     print("Selling all full stocks of best sells...\r")
