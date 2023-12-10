@@ -2,9 +2,17 @@ import robin_stocks.robinhood as rh
 from datetime import datetime as dt
 from time import sleep
 import select, sys
+
 def get_symbol_from_instrument_url(instrument_url):
     instrument_data = rh.helper.request_get(instrument_url, 'regular', jsonify_data=True)
     return instrument_data['symbol'] if instrument_data else None
+def log_data(data):
+    try:
+        with open("log.txt", "a") as f:
+            f.write(data)
+    except:
+        with open("log.txt", "w") as f:
+            f.write(data)
 
 print("\033cLogging in...\r", end="")
 rh.authentication.login()
@@ -118,6 +126,7 @@ while(True):
     print(39*" ", "\rAll sells complete")
     print("Completed this set of trades, repeating in 1 hour [Press enter to skip wait]")
     # '''
+    log_data("Cash: $"+str(cash)+",\n"+"Owned stocks: "+str(owned)+",\n"+"Time of log: "+str(dt.now())+";\n\n")
     time_passed=0
     while time_passed < 3600:
         input_available, _, _ = select.select([sys.stdin], [], [], 1)
