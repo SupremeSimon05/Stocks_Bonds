@@ -20,7 +20,7 @@ Send me an email explaining what should be improved and we will try to improve i
 If you'd like to contribute, feel free. Email me and we can get you set up.
 
 ## Authors and acknowledgment
-Go Simon Champney (most important dev), he did great 
+Go Simon Champney (most important dev), he did great  
 And also, woo me (eh I coulda done more for the team)
 
 ## License
