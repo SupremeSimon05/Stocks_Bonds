@@ -1,2 +1,4 @@
-
+Cash: $14.73,
+Owned stocks: ['CIFR', 'PRCH', 'DNN', 'NOTE', 'EOSE'],
+Time of log: 2023-12-12 17:24:09.967348;
 

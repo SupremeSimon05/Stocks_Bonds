@@ -28,6 +28,7 @@ while(True):
         if order['side'] == 'buy')
     print(22*" ", "\rRetrieved buying power: $", cash)
     if(cash>1):
+        to_buy=None
         to_buys = [item['symbol'] for item in watchlist['results']]
         temp = []
         symbol_price={}
@@ -65,11 +66,9 @@ while(True):
             for order in orders:
                 if(to_buy==get_symbol_from_instrument_url(order['instrument'])):
                     has_traded=True
-                    if(order["state"]=="filled"):
+                    if(order["state"]=="filled" and order["side"]=="buy"):
                         if((dt.now()-dt.strptime(order['last_transaction_at'], "%Y-%m-%dT%H:%M:%SZ")).total_seconds()/3600>24):
                             temp.append(to_buy)
-                    else:
-                        temp.append(to_buy)
                     break
             if(not has_traded):
                 temp.append(to_buy)
@@ -108,21 +107,21 @@ while(True):
             to_sells.append(to_sell)
     print("Reducing possible sells [2/2]...\r", end="")
     temp=[]
+    stocks_and_price={}
     for to_sell in to_sells:
         orders=rh.orders.get_all_stock_orders()
         for order in orders:
             if(to_sell==get_symbol_from_instrument_url(order['instrument'])):
-                if(order["state"]=="filled"):
-                    if((dt.now()-dt.strptime(order['last_transaction_at'], "%Y-%m-%dT%H:%M:%SZ")).total_seconds()/3600>24):
+                if(order["state"]=="filled" and order["side"]=="buy"):
+                    if((dt.now()-dt.strptime(order['last_transaction_at'], "%Y-%m-%dT%H:%M:%S.%fZ")).total_seconds()/3600>24):
                         temp.append(to_sell)
-                else:
-                    temp.append(to_sell)
+                        stocks_and_price[to_sell]=float(order['average_price'])
                 break
     to_sells = temp[:]
-    print(31*" ", "\rBest sells complete: ", to_sells)
+    print(31*" ", "\rBest sells complete: ", stocks_and_price)
     print("Selling all full stocks of best sells...\r")
     for to_sell in to_sells:
-        order = rh.orders.order(to_sell, owned_to_how_much[to_sell], "sell", limitPrice=owned_to_how_much[symbol]+0.02, timeInForce="gtc")
+        order = rh.orders.order(to_sell, owned_to_how_much[to_sell], "sell", limitPrice=stocks_and_price[to_sell]+0.02, timeInForce="gtc")
     print(39*" ", "\rAll sells complete")
     print("Completed this set of trades, repeating in 1 hour [Press enter to skip wait]")
     # '''
