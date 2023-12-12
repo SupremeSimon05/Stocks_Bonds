@@ -121,13 +121,13 @@ while(True):
     print(31*" ", "\rBest sells complete: ", stocks_and_price)
     print("Selling all full stocks of best sells...\r")
     for to_sell in to_sells:
-        order = rh.orders.order(to_sell, owned_to_how_much[to_sell], "sell", limitPrice=stocks_and_price[to_sell]+0.02, timeInForce="gtc")
+        order = rh.orders.order(to_sell, int(owned_to_how_much[to_sell]), "sell", limitPrice=stocks_and_price[to_sell]+0.02, timeInForce="gtc")
     print(39*" ", "\rAll sells complete")
-    print("Completed this set of trades, repeating in 1 hour [Press enter to skip wait]")
+    print("Completed this set of trades, repeating in 3 hours [Press enter to skip wait]")
     # '''
-    log_data("Cash: $"+str(cash)+",\n"+"Owned stocks: "+str(owned)+",\n"+"Time of log: "+str(dt.now())+";\n\n")
+    log_data("Buy orders: "+str(symbol_amt_to_buy)+",\n"+"Sell orders: "+str(stocks_and_price)+",\n"+"Cash: $"+str(cash)+",\n"+"Owned stocks: "+str(owned)+",\n"+"Time of log: "+str(dt.now())+";\n\n")
     time_passed=0
-    while time_passed < 3600:
+    while time_passed < 3600*3:
         input_available, _, _ = select.select([sys.stdin], [], [], 1)
         if input_available:
             input()  # Read the input
@@ -135,9 +135,9 @@ while(True):
             break
         else:
             time_passed += 1
-            time_remaining = 3600 - time_passed
+            time_remaining = 3600*3 - time_passed
             print(time_remaining, "seconds remaining...\r", end="")
-    if(time_passed>=3600):
+    if(time_passed>=3600*3):
         print(22*" ", end="\r")
     print("New set starting")
     sleep(3)
