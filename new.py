@@ -11,4 +11,4 @@ def get_terminal_size():
     return columns, rows
 cols, rows = get_terminal_size()
 print(cols, rows)
-to_ascii("Alec_Bird.png", cols, rows-1, False)
+to_ascii("A.gif", "Alec_Bird.png", cols, rows-1, True, ASCII_DENSITY="█Ñ")

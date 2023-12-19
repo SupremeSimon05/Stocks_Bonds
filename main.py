@@ -17,10 +17,10 @@ def log_data(data):
 print("\033cLogging in...\r", end="")
 rh.authentication.login()
 print(12*" ", "\rLogged in")
-print("Retrieving watchlist...\r", end="")
-watchlist=rh.account.get_watchlist_by_name("not")
-print(22*" ", "\rWatchlist Retrieved")
 while(True):
+    print("Retrieving watchlist...\r", end="")
+    watchlist=rh.account.get_watchlist_by_name("not")
+    print(22*" ", "\rWatchlist Retrieved")
     print("Getting buying power...\r", end="")
     cash=float(rh.profiles.load_account_profile()['portfolio_cash'])-\
         sum(float(order['price']) * float(order['quantity']) 

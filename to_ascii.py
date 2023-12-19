@@ -3,7 +3,7 @@ import glob
 import time
 import os
 import requests
-
+import shutil
 import cv2
 
 class glob:
@@ -11,13 +11,14 @@ class glob:
     COLORIZED = None
 RESET = '\033[0m'
 
-def to_ascii(VIEWED, WIDTH, HEIGHT, ISVIDEO, COLORIZED = True, ASCII = True, FPS=2, DEFAULT_CHAR="█", ASCII_DENSITY = "Ñ@#W$9876543210?!abc;:+=-,._"):
+def to_ascii(VIEWED, v2, WIDTH, HEIGHT, ISVIDEO, COLORIZED = True, ASCII = False, FPS=2, DEFAULT_CHAR="█", ASCII_DENSITY = "█Ñ@#W$9876543210?!abc;:+=-,._"):
     glob.ASCII = ASCII
     glob.COLORIZED = COLORIZED
     """ RUN """
     print("\033[?25h", end="") #hide cursor
 
     if ISVIDEO:
+        i2=get_image(v2, WIDTH, HEIGHT)
         vidcap = cv2.VideoCapture(VIEWED)
         
         if not os.path.exists('images'):
@@ -39,8 +40,9 @@ def to_ascii(VIEWED, WIDTH, HEIGHT, ISVIDEO, COLORIZED = True, ASCII = True, FPS
         image = get_image(path, WIDTH, HEIGHT)
         if COLORIZED:
             pixels = get_color(image)
+            pixels2 = get_brightness(i2)
         else:
-            pixels = get_brightness(image)
+            pixels2 = get_brightness(i2)
         
         oldim = None
         old = get_image(path, WIDTH, HEIGHT)
@@ -49,21 +51,24 @@ def to_ascii(VIEWED, WIDTH, HEIGHT, ISVIDEO, COLORIZED = True, ASCII = True, FPS
         else:
             oldim = get_brightness(old)
 
-        print_image(WIDTH, HEIGHT, ASCII_DENSITY, DEFAULT_CHAR, pixels)
+        print_image(WIDTH, HEIGHT, ASCII_DENSITY, DEFAULT_CHAR, pixels, pixels2)
         for i in range(count): #assuming gif
             path = "images/frame{:d}.jpg".format(i)
             
             image = get_image(path, WIDTH, HEIGHT)
             if COLORIZED:
-                pixels = get_color(image)/3
+                try:
+                    pixels = get_color(image)/3
+                except:
+                    pixels = get_color(image)
             else:
                 pixels = get_brightness(image)
             
-            oldim = print_image1(WIDTH, HEIGHT, ASCII_DENSITY, DEFAULT_CHAR, pixels, oldim)
+            oldim = print_image1(WIDTH, HEIGHT, ASCII_DENSITY, DEFAULT_CHAR, pixels, oldim, pixels2)
             
             #print("\033c")
             #os.remove(path)
-        os.remove('images')
+        shutil.rmtree('images')
 
     else:
         image = get_image(VIEWED, WIDTH, HEIGHT)
@@ -80,7 +85,7 @@ def get_color_escape(r, g, b, background=False):
 
 def get_image(PHOTO, WIDTH, HEIGHT):
     image = Image.open(PHOTO)
-    image = image.resize((WIDTH, HEIGHT))
+    image = image.resize((WIDTH, HEIGHT), Image.NEAREST)
     
     return image
     
@@ -107,7 +112,10 @@ def get_ASCII_char(ASCII_density, brightness):
     value = 0
     character = None
     i = 0
-    brightness = (brightness[0]+brightness[1]+brightness[2])/3
+    try:
+        brightness = (brightness[0]+brightness[1]+brightness[2])/3
+    except:
+        pass
     while True:
         if value < brightness:
             value = value + density
@@ -123,7 +131,9 @@ def get_ASCII_char(ASCII_density, brightness):
         
 #######################################################
 
-def print_image1(WIDTH, HEIGHT, ASCII_DENSITY, DEFAULT_CHAR, pixels, pixels1):
+def print_image1(WIDTH, HEIGHT, ASCII_DENSITY, DEFAULT_CHAR, pixels, pixels1, p2):
+    ASCII=glob.ASCII
+    COLORIZED=glob.COLORIZED
     if(pixels!=pixels1):
         for y in range(HEIGHT):
             for x in range(WIDTH):
@@ -135,7 +145,8 @@ def print_image1(WIDTH, HEIGHT, ASCII_DENSITY, DEFAULT_CHAR, pixels, pixels1):
                     print("\033["+str(y)+";"+str(x)+"H", end ="")
                     if COLORIZED:
                         r, g, b = pixels[x,y]
-                        
+                        brightness = p2[x,y]
+                        pixel = get_ASCII_char(ASCII_DENSITY, brightness)
                         print(get_color_escape(r, g, b)
                           + pixel
                           + RESET, end="")
@@ -146,7 +157,7 @@ def print_image1(WIDTH, HEIGHT, ASCII_DENSITY, DEFAULT_CHAR, pixels, pixels1):
 
 #######################################################
 
-def print_image(WIDTH, HEIGHT, ASCII_DENSITY, DEFAULT_CHAR, pixels):
+def print_image(WIDTH, HEIGHT, ASCII_DENSITY, DEFAULT_CHAR, pixels, p2):
     ASCII=glob.ASCII
     COLORIZED=glob.COLORIZED
     for y in range(HEIGHT):
@@ -158,7 +169,8 @@ def print_image(WIDTH, HEIGHT, ASCII_DENSITY, DEFAULT_CHAR, pixels):
             
             if COLORIZED:
                 r, g, b = pixels[x,y]
-                
+                brightness = p2[x,y]
+                pixel = get_ASCII_char(ASCII_DENSITY, brightness)
                 print(get_color_escape(r, g, b)
                   + pixel
                   + RESET, end="")
