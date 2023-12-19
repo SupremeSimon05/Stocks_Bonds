@@ -1,5 +1,4 @@
-import os
-import shutil
+import os, shutil, select, sys
 from to_ascii import to_ascii
 
 def get_terminal_size():
@@ -9,6 +8,7 @@ def get_terminal_size():
         # Fallback for Python versions < 3.3
         _, columns, _, rows = os.get_terminal_size()
     return columns, rows
-cols, rows = get_terminal_size()
-print(cols, rows)
-to_ascii("A.gif", "Alec_Bird.png", cols, rows-1, True, ASCII_DENSITY="█Ñ")
+
+def printing():
+    cols, rows = get_terminal_size()
+    to_ascii("good.gif", "Alec_Bird.png", cols, rows-2, True, ASCII_DENSITY="█Ñ")

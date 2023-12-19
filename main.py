@@ -1,7 +1,7 @@
 import robin_stocks.robinhood as rh
 from datetime import datetime as dt
 from time import sleep
-import select, sys
+import select, sys, a
 
 def get_symbol_from_instrument_url(instrument_url):
     instrument_data = rh.helper.request_get(instrument_url, 'regular', jsonify_data=True)
@@ -14,6 +14,7 @@ def log_data(data):
         with open("log.txt", "w") as f:
             f.write(data)
 
+print("\033[?25h", end="")
 print("\033cLogging in...\r", end="")
 rh.authentication.login()
 print(12*" ", "\rLogged in")
@@ -126,19 +127,7 @@ while(True):
     print("Completed this set of trades, repeating in 3 hours [Press enter to skip wait]")
     # '''
     log_data("Buy orders: "+str(symbol_amt_to_buy)+",\n"+"Sell orders: "+str(stocks_and_price)+",\n"+"Cash: $"+str(cash)+",\n"+"Owned stocks: "+str(owned)+",\n"+"Time of log: "+str(dt.now())+";\n\n")
-    time_passed=0
-    while time_passed < 3600*3:
-        input_available, _, _ = select.select([sys.stdin], [], [], 1)
-        if input_available:
-            input()  # Read the input
-            print("Time skipped.", end=" ")
-            break
-        else:
-            time_passed += 1
-            time_remaining = 3600*3 - time_passed
-            print(time_remaining, "seconds remaining...\r", end="")
-    if(time_passed>=3600*3):
-        print(22*" ", end="\r")
+    a.to_wait()
     print("New set starting")
     sleep(3)
     print("\033c", end="")
