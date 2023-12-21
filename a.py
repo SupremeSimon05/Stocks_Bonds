@@ -22,7 +22,7 @@ def check_input():
             time_passed += 1
             time_remaining = 3600 * 3 - time_passed
             move_cursor(0, new.get_terminal_size()[1])
-            print(" ", time_remaining, "seconds remaining...\r", end="")
+            print(" ", time_remaining, "seconds remaining...", end="")
     if time_passed >= 3600 * 3:
         move_cursor(0, new.get_terminal_size()[1])
         print(22 * "  ", end="\r")

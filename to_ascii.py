@@ -4,7 +4,7 @@ import time
 import os
 import requests
 import shutil
-import cv2
+import cv2, new
 
 class glob:
     ASCII = None
@@ -32,9 +32,8 @@ def to_ascii(VIEWED, v2, WIDTH, HEIGHT, ISVIDEO, COLORIZED = True, ASCII = False
             cv2.imwrite(os.path.join('images',"frame{:d}.jpg".format(count)), image)     # save frame as JPEG file
             count += 1
         
-        print("{} images are extacted".format(count))
+        #print("{} images are extacted".format(count))
         path = "images/frame{:d}.jpg".format(0)
-        time.sleep(0.3)
         print("\033c", end = "")
         
         image = get_image(path, WIDTH, HEIGHT)
@@ -53,6 +52,8 @@ def to_ascii(VIEWED, v2, WIDTH, HEIGHT, ISVIDEO, COLORIZED = True, ASCII = False
 
         print_image(WIDTH, HEIGHT, ASCII_DENSITY, DEFAULT_CHAR, pixels, pixels2)
         for i in range(count): #assuming gif
+            print("\033["+str(new.get_terminal_size()[1]-1)+";"+str(0)+"H", end ="")
+            print("Please keep running/plugged in, thanks")
             path = "images/frame{:d}.jpg".format(i)
             
             image = get_image(path, WIDTH, HEIGHT)
