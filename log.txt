@@ -182,3 +182,15 @@ Cash: $446.88,
 Owned stocks: [],
 Time of log: 2023-12-28 06:58:39.146156;
 
+Buy orders: {},
+Sell orders: {},
+Cash: $446.88,
+Owned stocks: ['NOTE'],
+Time of log: 2023-12-28 07:53:04.321440;
+
+Buy orders: {'ACIW': 14},
+Sell orders: {},
+Cash: $0,
+Owned stocks: ['NOTE'],
+Time of log: 2023-12-28 08:16:06.934210;
+

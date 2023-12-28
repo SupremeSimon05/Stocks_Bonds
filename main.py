@@ -4,27 +4,40 @@ from time import sleep
 import yfinance as yf
 import select, sys, a
 
+def print_progress_bar(item, lst):
+    a.move_cursor(0, a.new.get_terminal_size()[1])
+    total_items, current_position = len(lst), lst.index(item) + 1
+    progress = int((current_position / total_items) * 100)
+    progress_bar = f"{current_position}/{total_items} [{'=' * (progress // 2) + '>' + ' ' * ((100 - progress) // 2)}]          "
+    print(progress_bar, end="\r")
+    
 def is_adr(symbol):
-    instrument_data = r.get_instrument_by_symbol(symbol)
-    return instrument_data.get("adr", False)
+    instrument_data_list = rh.get_instruments_by_symbols([symbol])
+    if instrument_data_list and 'adr' in instrument_data_list[0]:
+        return instrument_data_list[0]['adr']
+    return False
 
 def is_stock_at_highest(symbol, time_interval):
-    historical_data = rh.get_stock_historicals(symbol, interval='day', span=time_interval)
-    current_price = float(rh.stocks.get_latest_price(symbol)[0])
-    if(not historical_data[0]):
+    try:
+        stock = yf.Ticker(symbol)
+        historical_data = stock.history(period=time_interval, interval="1d")
+        if historical_data.empty:
+            return True
+        current_price = historical_data.iloc[-1]['Close']
+        highest_price = historical_data['High'].max()
+        return current_price >= highest_price
+    except Exception as e:
+        print(f"An error occurred while fetching stock data for {symbol}: {e}")
         return True
-    highest_price = float(historical_data[0]['high_price'])
-    for data in historical_data:
-        high_price = float(data['high_price'])
-        if high_price > highest_price:
-            highest_price = high_price
-    return current_price >= highest_price
 
 def get_ipo_stock_price(ticker):
     stock_info = yf.Ticker(ticker)
     historical_data = stock_info.history(period="max")
-    ipo_date = historical_data.index[0].date()
-    ipo_price = historical_data.iloc[0]['Open']
+    try:
+        ipo_date = historical_data.index[0].date()
+        ipo_price = historical_data.iloc[0]['Open']
+    except:
+        return dt.now().date(), 0
     return ipo_date, ipo_price
 
 def get_symbol_from_instrument_url(instrument_url):
@@ -60,6 +73,7 @@ while(True):
         symbol_price={}
         print("Reducing possible buys [1/4]...\r", end="")
         for to_buy in to_buys:
+            print_progress_bar(to_buy, to_buys)
             last_price=float(rh.stocks.get_latest_price(to_buy)[0])
             symbol_price[to_buy]=last_price
             if(last_price<=50 and last_price>=1):
@@ -68,19 +82,24 @@ while(True):
                     if((dt.now().date()-ipo_date).days>100):
                         temp.append(to_buy)
         to_buys = temp[:]
+        a.move_cursor(0, 4)
         print("Reducing possible buys [1.5/4]...\r", end="")
         temp=[]
         for to_buy in to_buys:
+            print_progress_bar(to_buy, to_buys)
             if(not is_stock_at_highest(to_buy, "day")):
                 if(not is_stock_at_highest(to_buy, "week")):
                     temp.append(to_buy)
         to_buys = temp[:]
+        a.move_cursor(0, 5)
         print("Reducing possible buys [1.75/4]...\r", end="")
         temp=[]
         for to_buy in to_buys:
+            print_progress_bar(to_buy, to_buys)
             if(not is_adr(to_buy)):
                 temp.append(to_buy)
         to_buys = temp[:]
+        a.move_cursor(0, 6)
         print("Reducing possible buys [2/4]...   \r", end="")
         owned=[]
         temp = []
