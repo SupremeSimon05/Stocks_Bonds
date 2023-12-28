@@ -1,11 +1,36 @@
 import robin_stocks.robinhood as rh
 from datetime import datetime as dt
 from time import sleep
+import yfinance as yf
 import select, sys, a
+
+def is_adr(symbol):
+    instrument_data = r.get_instrument_by_symbol(symbol)
+    return instrument_data.get("adr", False)
+
+def is_stock_at_highest(symbol, time_interval):
+    historical_data = rh.get_stock_historicals(symbol, interval='day', span=time_interval)
+    current_price = float(rh.stocks.get_latest_price(symbol)[0])
+    if(not historical_data[0]):
+        return True
+    highest_price = float(historical_data[0]['high_price'])
+    for data in historical_data:
+        high_price = float(data['high_price'])
+        if high_price > highest_price:
+            highest_price = high_price
+    return current_price >= highest_price
+
+def get_ipo_stock_price(ticker):
+    stock_info = yf.Ticker(ticker)
+    historical_data = stock_info.history(period="max")
+    ipo_date = historical_data.index[0].date()
+    ipo_price = historical_data.iloc[0]['Open']
+    return ipo_date, ipo_price
 
 def get_symbol_from_instrument_url(instrument_url):
     instrument_data = rh.helper.request_get(instrument_url, 'regular', jsonify_data=True)
     return instrument_data['symbol'] if instrument_data else None
+
 def log_data(data):
     try:
         with open("log.txt", "a") as f:
@@ -37,10 +62,26 @@ while(True):
         for to_buy in to_buys:
             last_price=float(rh.stocks.get_latest_price(to_buy)[0])
             symbol_price[to_buy]=last_price
-            if(last_price<=10 and last_price>=1):
+            if(last_price<=50 and last_price>=1):
+                ipo_date, first_price = get_ipo_stock_price(to_buy)
+                if(first_price<last_price):
+                    if((dt.now().date()-ipo_date).days>100):
+                        temp.append(to_buy)
+        to_buys = temp[:]
+        print("Reducing possible buys [1.5/4]...\r", end="")
+        temp=[]
+        for to_buy in to_buys:
+            if(not is_stock_at_highest(to_buy, "day")):
+                if(not is_stock_at_highest(to_buy, "week")):
+                    temp.append(to_buy)
+        to_buys = temp[:]
+        print("Reducing possible buys [1.75/4]...\r", end="")
+        temp=[]
+        for to_buy in to_buys:
+            if(not is_adr(to_buy)):
                 temp.append(to_buy)
         to_buys = temp[:]
-        print("Reducing possible buys [2/4]...\r", end="")
+        print("Reducing possible buys [2/4]...   \r", end="")
         owned=[]
         temp = []
         for symb, dumb in rh.account.build_holdings().items():
@@ -91,6 +132,7 @@ while(True):
         print(23*" ", "\rPlacing order(s) for: ", symbol_amt_to_buy, "...\r", end = "")
         for symbol in symbol_amt_to_buy:
             order = rh.orders.order(symbol, symbol_amt_to_buy[symbol], "buy", limitPrice=symbol_price[symbol]-0.01, timeInForce="gtc")
+            pass
         print((len(str(symbol_amt_to_buy))+26)*" ", "\rOrder(s) placed: ", symbol_amt_to_buy)
     print("Getting current positions...\r", end="")
     owned_to_how_much={}

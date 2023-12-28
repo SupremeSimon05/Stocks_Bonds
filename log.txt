@@ -164,3 +164,21 @@ Cash: $446.88,
 Owned stocks: ['NOTE'],
 Time of log: 2023-12-21 17:31:15.288329;
 
+Buy orders: {},
+Sell orders: {},
+Cash: $446.88,
+Owned stocks: ['NOTE'],
+Time of log: 2023-12-28 06:57:36.091087;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $446.88,
+Owned stocks: ['NOTE'],
+Time of log: 2023-12-28 06:58:10.821811;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $446.88,
+Owned stocks: [],
+Time of log: 2023-12-28 06:58:39.146156;
+
