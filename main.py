@@ -72,6 +72,7 @@ while(True):
         temp = []
         symbol_price={}
         print("Reducing possible buys [1/4]...\r", end="")
+        now=dt.now().date()
         for to_buy in to_buys:
             print_progress_bar(to_buy, to_buys)
             last_price=float(rh.stocks.get_latest_price(to_buy)[0])
@@ -79,7 +80,7 @@ while(True):
             if(last_price<=50 and last_price>=1):
                 ipo_date, first_price = get_ipo_stock_price(to_buy)
                 if(first_price<last_price):
-                    if((dt.now().date()-ipo_date).days>100):
+                    if((now-ipo_date).days>100):
                         temp.append(to_buy)
         to_buys = temp[:]
         a.move_cursor(0, 4)
@@ -91,7 +92,7 @@ while(True):
                 if(not is_stock_at_highest(to_buy, "week")):
                     temp.append(to_buy)
         to_buys = temp[:]
-        a.move_cursor(0, 5)
+        a.move_cursor(0, 4)
         print("Reducing possible buys [1.75/4]...\r", end="")
         temp=[]
         for to_buy in to_buys:
@@ -99,30 +100,40 @@ while(True):
             if(not is_adr(to_buy)):
                 temp.append(to_buy)
         to_buys = temp[:]
-        a.move_cursor(0, 6)
+        a.move_cursor(0, 4)
         print("Reducing possible buys [2/4]...   \r", end="")
         owned=[]
         temp = []
         for symb, dumb in rh.account.build_holdings().items():
+            print_progress_bar(to_buy, to_buys)
             owned.append(symb)
         for to_buy in to_buys:
+            print_progress_bar(to_buy, to_buys)
             if(not to_buy in owned):
                 temp.append(to_buy)
         to_buys = temp[:]
+        a.move_cursor(0, 4)
         print("Reducing possible buys [3/4]...\r", end="")
         temp=[]
         for to_buy in to_buys:
+            print_progress_bar(to_buy, to_buys)
             summary = rh.stocks.get_ratings(to_buy)["summary"]
+            if(summary==None):
+                a.move_cursor(0, a.new.get_terminal_size()[1]-2)
+                print("Missing ratings", to_buy)
+                continue
             total = summary["num_buy_ratings"]+summary["num_hold_ratings"]+summary["num_sell_ratings"]
             if(summary["num_buy_ratings"]/total>=0.5 and summary["num_sell_ratings"]<=0.3):
                 temp.append(to_buy)
         to_buys = temp[:]
+        a.move_cursor(0, 4)
         print("Reducing possible buys [4/4]...\r", end="")
         temp=[]
         orders=None
         if(to_buy):
             orders=rh.orders.get_all_stock_orders()
         for to_buy in to_buys:
+            print_progress_bar(to_buy, to_buys)
             has_traded=False
             for order in orders:
                 if(to_buy==get_symbol_from_instrument_url(order['instrument'])):
@@ -134,6 +145,7 @@ while(True):
             if(not has_traded):
                 temp.append(to_buy)
         to_buys = temp[:]
+        a.move_cursor(0, 5)
         print(30*" ", "\rBest buys complete: ", to_buys)
         print("Getting amount to buy...\r", end="")
         symbol_amt_to_buy={}
@@ -148,6 +160,11 @@ while(True):
                     cash-=symbol_price[to_buy]
                 else:
                     cash=0
+        temp={}
+        for to_buy in symbol_amt_to_buy:
+            if(symbol_amt_to_buy[to_buy]>0):
+                temp[to_buy]=symbol_amt_to_buy[to_buy]
+        symbol_amt_to_buy=temp.copy()
         print(23*" ", "\rPlacing order(s) for: ", symbol_amt_to_buy, "...\r", end = "")
         for symbol in symbol_amt_to_buy:
             order = rh.orders.order(symbol, symbol_amt_to_buy[symbol], "buy", limitPrice=symbol_price[symbol]-0.01, timeInForce="gtc")
