@@ -4,3 +4,9 @@ Cash: $0,
 Owned stocks: ['NOTE'],
 Time of log: 2023-12-30 10:26:14.507837;
 
+Buy orders: {},
+Sell orders: {},
+Cash: $0,
+Owned stocks: ['NOTE', 'ACCD', 'ACMR', 'ACT', 'AGI', 'AIRC', 'ALGM', 'AMKR', 'APG', 'APLE', 'ASPN', 'ASX', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'AZEK'],
+Time of log: 2023-12-30 10:57:30.502488;
+
