@@ -1,12 +1,6 @@
-Buy orders: {'ACCD': 1, 'ACMR': 1, 'ACT': 1, 'AGI': 1, 'AIRC': 1, 'ALGM': 1, 'AMKR': 1, 'APG': 1, 'APLE': 1, 'ASPN': 1, 'ASX': 1, 'ATI': 1, 'AVNT': 1, 'AVNW': 1, 'AXTA': 1, 'AZEK': 1},
-Sell orders: {},
-Cash: $0,
-Owned stocks: ['NOTE'],
-Time of log: 2023-12-30 10:26:14.507837;
-
 Buy orders: {},
 Sell orders: {},
-Cash: $0,
+Cash: $11.25,
 Owned stocks: ['NOTE', 'ACCD', 'ACMR', 'ACT', 'AGI', 'AIRC', 'ALGM', 'AMKR', 'APG', 'APLE', 'ASPN', 'ASX', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'AZEK'],
-Time of log: 2023-12-30 10:57:30.502488;
+Time of log: 2024-01-03 01:26:33.860380;
 

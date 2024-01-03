@@ -1,5 +1,4 @@
 robin_stocks
 opencv-python
---upgrade pip
 pillow
 yfinance

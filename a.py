@@ -37,6 +37,9 @@ def to_wait():
     if check_input():
         # Terminate the process thread
         main.cont=False
+        move_cursor(0, new.get_terminal_size()[1]-1)
+        print("Time skipped")
     time.sleep(20)
+    print("\033c")
 process_thread = threading.Thread(target=process, daemon=True)
 process_thread.start()
