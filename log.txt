@@ -4,3 +4,9 @@ Cash: $11.25,
 Owned stocks: ['NOTE', 'ACCD', 'ACMR', 'ACT', 'AGI', 'AIRC', 'ALGM', 'AMKR', 'APG', 'APLE', 'ASPN', 'ASX', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'AZEK'],
 Time of log: 2024-01-03 01:26:33.860380;
 
+Buy orders: {},
+Sell orders: {'ACCD': 12.0, 'ACMR': 19.06, 'ACT': 28.84, 'AGI': 13.46, 'AIRC': 34.54, 'ALGM': 29.9, 'AMKR': 32.75, 'APG': 34.28, 'APLE': 16.59, 'ASX': 9.23, 'AVNT': 41.23, 'AXTA': 33.61, 'AZEK': 37.55},
+Cash: $11.25,
+Owned stocks: ['NOTE', 'ACCD', 'ACMR', 'ACT', 'AGI', 'AIRC', 'ALGM', 'AMKR', 'APG', 'APLE', 'ASPN', 'ASX', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'AZEK'],
+Time of log: 2024-01-04 15:06:15.146694;
+
