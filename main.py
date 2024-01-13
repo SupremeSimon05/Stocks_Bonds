@@ -3,6 +3,21 @@ from datetime import datetime as dt
 from time import sleep
 import yfinance as yf
 import select, sys, a
+import importlib
+
+def reload_all_modules():
+    # List all modules currently loaded
+    loaded_modules = list(sys.modules.keys())
+
+    # Reload all modules
+    for module_name in loaded_modules:
+        if not module_name.startswith('__'):
+            try:
+                module = importlib.import_module(module_name)
+                importlib.reload(module)
+            except Exception as e:
+                print(f"Error reloading module {module_name}: {e}")
+
 
 def print_progress_bar(item, lst):
     a.move_cursor(0, a.new.get_terminal_size()[1])
@@ -216,6 +231,7 @@ while(True):
     print("New set starting")
     sleep(3)
     print("\033c", end="")
+    reload_all_modules()
 
 
 
