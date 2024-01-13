@@ -4,6 +4,8 @@ from time import sleep
 import yfinance as yf
 import select, sys, a
 import importlib
+import gc
+gc.collect()
 
 def reload_all_modules():
     # List all modules currently loaded
@@ -232,6 +234,7 @@ while(True):
     sleep(3)
     print("\033c", end="")
     reload_all_modules()
+    gc.collect()
 
 
 
