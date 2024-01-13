@@ -235,7 +235,9 @@ while(True):
     print("\033c", end="")
     reload_all_modules()
     gc.collect()
-
+    print("Ignore that ^")
+    sleep(1.5)
+    print("\033c", end="")
 
 
     #"""
