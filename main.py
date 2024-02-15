@@ -2,10 +2,7 @@ import robin_stocks.robinhood as rh
 from datetime import datetime as dt
 from time import sleep
 import yfinance as yf
-import select, sys, a
-import importlib
-import gc
-import subprocess
+import select, sys, a, importlib, gc, subprocess, emailing
 
 gc.collect()
 
@@ -239,6 +236,7 @@ while(True):
         # '''
         log_data("Buy orders: "+str(symbol_amt_to_buy)+",\n"+"Sell orders: "+str(stocks_and_price)+",\n"+"Cash: $"+str(cash)+",\n"+"Owned stocks: "+str(owned)+",\n"+"Time of log: "+str(dt.now())+";\n\n")
         update_git("Program still running, set completed at "+str(dt.now()))
+        emailing.send_update("Program still running at "+str(dt.now()))
         #a.to_wait()
         print("New set starting")
         sleep(3)
@@ -250,9 +248,11 @@ while(True):
         print("\033c", end="")
     except KeyboardInterrupt:
         update_git("Program ended due to user at "+str(dt.now()))
+        emailing.send_update("Program ended by user")
         break
     except Exception as e:
         update_git("Error occured at "+str(dt.now())+" \nError code: "+str(e))
+        emailing.send_update("Error happened in program, trying to continue")
 
 
 
