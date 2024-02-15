@@ -10,3 +10,9 @@ Cash: $11.25,
 Owned stocks: ['NOTE', 'ACCD', 'ACMR', 'ACT', 'AGI', 'AIRC', 'ALGM', 'AMKR', 'APG', 'APLE', 'ASPN', 'ASX', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'AZEK'],
 Time of log: 2024-01-04 15:06:15.146694;
 
+Buy orders: {},
+Sell orders: {'MGM': 44.1, 'STAG': 36.88, 'STWD': 19.04, 'SUM': 36.99, 'TGLS': 44.62, 'TROX': 12.85, 'UAL': 41.87, 'USFD': 46.45, 'VECO': 34.68, 'VRRM': 22.11, 'VVV': 39.01, 'VYX': 15.27, 'WMG': 36.28, 'WY': 33.02},
+Cash: $19.409999999999968,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FCX', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'STAG', 'STWD', 'SUM', 'TENB', 'TGLS', 'TROX', 'UAL', 'UPBD', 'USFD', 'VECO', 'VNT', 'VRRM', 'VVV', 'VVX', 'VYX', 'WMG', 'WY', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC'],
+Time of log: 2024-02-15 16:12:46.668714;
+
