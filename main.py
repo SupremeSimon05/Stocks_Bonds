@@ -234,12 +234,12 @@ while(True):
         for to_sell in to_sells:
             order = rh.orders.order(to_sell, int(owned_to_how_much[to_sell]), "sell", limitPrice=stocks_and_price[to_sell]+0.02, timeInForce="gtc")
         print(39*" ", "\rAll sells complete")
-        print("Completed this set of trades, repeating in 3 hours [Press enter to skip wait]")
-        sleep(5)
+        #print("Completed this set of trades, repeating in 3 hours [Press enter to skip wait]")
+        #sleep(5)
         # '''
         log_data("Buy orders: "+str(symbol_amt_to_buy)+",\n"+"Sell orders: "+str(stocks_and_price)+",\n"+"Cash: $"+str(cash)+",\n"+"Owned stocks: "+str(owned)+",\n"+"Time of log: "+str(dt.now())+";\n\n")
         update_git("Program still running, set completed at "+str(dt.now()))
-        a.to_wait()
+        #a.to_wait()
         print("New set starting")
         sleep(3)
         print("\033c", end="")
