@@ -190,6 +190,11 @@ while(True):
                 if(symbol_amt_to_buy[to_buy]>0):
                     temp[to_buy]=symbol_amt_to_buy[to_buy]
             symbol_amt_to_buy=temp.copy()
+            remote_command=emailing.readLatest()
+            if(remote_command.upper()=="STOP"):
+                update_git("Remote ended program")
+                print("\033cRemote ended program")
+                break
             print(23*" ", "\rPlacing order(s) for: ", symbol_amt_to_buy, "...\r", end = "")
             for symbol in symbol_amt_to_buy:
                 order = rh.orders.order(symbol, symbol_amt_to_buy[symbol], "buy", limitPrice=symbol_price[symbol]-0.01, timeInForce="gtc")
@@ -227,6 +232,11 @@ while(True):
         to_sells = temp[:]
         a.move_cursor(0,8)
         print(31*" ", "\rBest sells complete: ", stocks_and_price)
+        remote_command=emailing.readLatest()
+        if(remote_command.upper()=="STOP"):
+            update_git("Remote ended program")
+            print("\033cRemote ended program")
+            break
         print("Selling all full stocks of best sells...\r")
         for to_sell in to_sells:
             order = rh.orders.order(to_sell, int(owned_to_how_much[to_sell]), "sell", limitPrice=stocks_and_price[to_sell]+0.02, timeInForce="gtc")
