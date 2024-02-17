@@ -2,23 +2,37 @@ from redmail import EmailSender
 from datetime import datetime as dt
 import imaplib, email
 
-def send_update(message):
+def log_data(data):
     try:
-        email = EmailSender(
-            host='smtp-mail.outlook.com',  # Update host
-            port=587,                      # Update port
-            username='stock_market_scheme@outlook.com',
-            password='P@55W0rd!!'
-        )
-        email.send(
-            subject="",
-            sender="stock_market_scheme@outlook.com",
-            receivers=['6037314818@txt.att.net'],
-            text=message,
-            html="<p>"+message+"</p>"
-        )
-    except Exception as e:
-        print("Emailing failed because "+str(e)+". Skipping update")
+        with open("log.txt", "a") as f:
+            f.write(data)
+    except:
+        with open("log.txt", "w") as f:
+            f.write(data)
+
+def send_update(message, times_for_email):
+    if(times_for_email>=30):
+        try:
+            email = EmailSender(
+                host='smtp-mail.outlook.com',  # Update host
+                port=587,                      # Update port
+                username='stock_market_scheme@outlook.com',
+                password='P@55W0rd!!'
+            )
+            email.send(
+                subject="No Subject",
+                sender="stock_market_scheme@outlook.com",
+                receivers=['6037314818@txt.att.net'],
+                text=message,
+                html="<p>"+message+"</p>"
+            )
+            return 0
+        except Exception as e:
+            print("Emailing failed because "+str(e)+". Skipping update")
+            log_data("Emailing failed because "+str(e)+" at "+dt.now()+". Update skipped")
+            return times_for_email+1
+    else:
+        return times_for_email+1
 
 def get_text(part):
     if part.is_multipart():
@@ -42,4 +56,6 @@ def readLatest():
     except Exception as e:
         #This kinda a dangerous line, but I'm greedy so I want monies quick
         print("Remote failed because "+str(e)+". Skipping control") 
-    
+        log_data("Remote failed because "+str(e)+" at "+dt.now()+". Control skipped")
+        return "Remote Failed"
+

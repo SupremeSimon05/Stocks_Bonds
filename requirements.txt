@@ -2,3 +2,4 @@ robin_stocks
 opencv-python
 pillow
 yfinance
+redmail

@@ -3,14 +3,19 @@ from datetime import datetime as dt
 from time import sleep
 import yfinance as yf
 import select, sys, a, importlib, gc, subprocess, emailing
+from emailing import log_data
 
 gc.collect()
 
 def update_git(message):
+    #Kinda not working for some workspaces, best to just not for now
+    """
     # Run git commands to commit and push changes
     subprocess.run(["git", "add", "."])
     subprocess.run(["git", "commit", "-m", message])
     subprocess.run(["git", "push"])
+    """
+    pass
 
 def reload_all_modules():
     # List all modules currently loaded
@@ -66,19 +71,14 @@ def get_symbol_from_instrument_url(instrument_url):
     instrument_data = rh.helper.request_get(instrument_url, 'regular', jsonify_data=True)
     return instrument_data['symbol'] if instrument_data else None
 
-def log_data(data):
-    try:
-        with open("log.txt", "a") as f:
-            f.write(data)
-    except:
-        with open("log.txt", "w") as f:
-            f.write(data)
+
 
 print("\033[?25h", end="")
 print("\033cLogging in...\r", end="")
 rh.authentication.login()
 print(12*" ", "\rLogged in")
 test=int(input("Just testing? (0,1) "))
+times_for_email=0
 while(True):
     try:
         print("Retrieving watchlist...\r", end="")
@@ -191,10 +191,17 @@ while(True):
                     temp[to_buy]=symbol_amt_to_buy[to_buy]
             symbol_amt_to_buy=temp.copy()
             remote_command=emailing.readLatest()
-            if(remote_command.upper()=="STOP"):
-                update_git("Remote ended program")
-                print("\033cRemote ended program")
-                break
+            if("STOP" in remote_command.upper()):
+                update_git("Remote paused program")
+                times_for_email=emailing.send_update("Remote paused the program at "+str(dt.now()), 0)
+                print("\033cRemote paused program")
+                while(True):
+                    remote_command=emailing.readLatest()
+                    if(not "STOP" in remote_command.upper()):
+                        times_for_email=emailing.send_update("Remote continued the program at "+str(dt.now()),0)
+                        break
+                    else:
+                        sleep(60)
             print(23*" ", "\rPlacing order(s) for: ", symbol_amt_to_buy, "...\r", end = "")
             for symbol in symbol_amt_to_buy:
                 order = rh.orders.order(symbol, symbol_amt_to_buy[symbol], "buy", limitPrice=symbol_price[symbol]-0.01, timeInForce="gtc")
@@ -217,6 +224,8 @@ while(True):
                 to_sells.append(to_sell)
         a.move_cursor(0,8)
         print("Reducing possible sells [2/2]...\r", end="")
+        if(test and len(to_sells)>0):
+            to_sells=to_sells[0]
         temp=[]
         stocks_and_price={}
         for to_sell in to_sells:
@@ -233,10 +242,17 @@ while(True):
         a.move_cursor(0,8)
         print(31*" ", "\rBest sells complete: ", stocks_and_price)
         remote_command=emailing.readLatest()
-        if(remote_command.upper()=="STOP"):
-            update_git("Remote ended program")
-            print("\033cRemote ended program")
-            break
+        if("STOP" in remote_command.upper()):
+                update_git("Remote paused program")
+                times_for_email=emailing.send_update("Remote paused the program at "+str(dt.now()),0)
+                print("\033cRemote paused program")
+                while(True):
+                    remote_command=emailing.readLatest()
+                    if(not "STOP" in remote_command.upper()):
+                        times_for_email=emailing.send_update("Remote continued the program at "+str(dt.now()),0)
+                        break
+                    else:
+                        sleep(60)
         print("Selling all full stocks of best sells...\r")
         for to_sell in to_sells:
             order = rh.orders.order(to_sell, int(owned_to_how_much[to_sell]), "sell", limitPrice=stocks_and_price[to_sell]+0.02, timeInForce="gtc")
@@ -246,7 +262,7 @@ while(True):
         # '''
         log_data("Buy orders: "+str(symbol_amt_to_buy)+",\n"+"Sell orders: "+str(stocks_and_price)+",\n"+"Cash: $"+str(cash)+",\n"+"Owned stocks: "+str(owned)+",\n"+"Time of log: "+str(dt.now())+";\n\n")
         update_git("Program still running, set completed at "+str(dt.now()))
-        emailing.send_update("Program still running at "+str(dt.now()))
+        times_for_email=emailing.send_update("Buy orders: "+str(symbol_amt_to_buy)+",\n"+"Sell orders: "+str(stocks_and_price)+",\n"+"Program still running at "+str(dt.now()),times_for_email)
         #a.to_wait()
         print("New set starting")
         sleep(3)
@@ -258,11 +274,11 @@ while(True):
         print("\033c", end="")
     except KeyboardInterrupt:
         update_git("Program ended due to user at "+str(dt.now()))
-        emailing.send_update("Program ended by user")
+        times_for_email=emailing.send_update("Program ended by user",0)
         break
     except Exception as e:
         update_git("Error occured at "+str(dt.now())+" \nError code: "+str(e))
-        emailing.send_update("Error happened in program, trying to continue")
+        times_for_email=emailing.send_update("Error happened in program, trying to continue",0)
 
 
 

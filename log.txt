@@ -16,3 +16,87 @@ Cash: $19.409999999999968,
 Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FCX', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'STAG', 'STWD', 'SUM', 'TENB', 'TGLS', 'TROX', 'UAL', 'UPBD', 'USFD', 'VECO', 'VNT', 'VRRM', 'VVV', 'VVX', 'VYX', 'WMG', 'WY', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC'],
 Time of log: 2024-02-15 16:12:46.668714;
 
+Buy orders: {},
+Sell orders: {'CPRT': 49.21, 'NSSC': 45.46, 'NWSA': 26.57, 'OI': 16.73, 'ONEW': 26.62, 'OR': 14.17, 'PARR': 40.5, 'PBA': 34.1, 'PERI': 23.54, 'PPC': 28.565, 'PSTG': 43.39, 'PWSC': 24.75, 'RAMP': 37.15, 'RITM': 10.65, 'RNG': 32.44, 'ROAD': 46.81},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 01:43:57.379276;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 02:30:20.323805;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 02:32:56.384278;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 02:36:39.272118;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 02:39:19.787225;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 02:42:05.439272;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 02:44:47.137389;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 02:47:28.178381;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 02:50:13.339985;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 02:52:45.968262;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 02:55:28.146736;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 02:58:11.376229;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 03:00:55.277876;
+
+Buy orders: {},
+Sell orders: {},
+Cash: $51.430000000000064,
+Owned stocks: ['AGI', 'ASPN', 'ATI', 'AVNT', 'AVNW', 'AXTA', 'BLBD', 'BOWL', 'BKR', 'CMCSA', 'DAL', 'EDR', 'ET', 'FLEX', 'FORM', 'GT', 'MGM', 'MITK', 'SONO', 'SSYS', 'TENB', 'TGLS', 'UPBD', 'VNT', 'VVX', 'ZETA', 'ARHS', 'CPRT', 'NOA', 'NSSC', 'NWSA', 'NXE', 'OI', 'ONEW', 'OR', 'OTEX', 'PARR', 'PBA', 'PERI', 'PINS', 'PPC', 'PRG', 'PRIM', 'PRO', 'PSTG', 'PWSC', 'RAMP', 'RITM', 'RNG', 'ROAD', 'RWT', 'SGML', 'SILV', 'SMAR', 'SMPL', 'TGI'],
+Time of log: 2024-02-17 03:03:35.217066;
+
