@@ -16,6 +16,7 @@ def send_update(message, times_for_email, test=False):
         threshold=0
     if(times_for_email>=threshold):
         try:
+            print("Emailing", end="\r")
             email = EmailSender(
                 host='smtp-mail.outlook.com',  # Update host
                 port=587,                      # Update port
@@ -30,6 +31,7 @@ def send_update(message, times_for_email, test=False):
                 html="<p>"+message+"</p>"
             )
             return 0
+            print("Emailed")
         except Exception as e:
             print("Emailing failed because "+str(e)+". Skipping update")
             log_data("Emailing failed because "+str(e)+" at "+str(dt.now())+". Update skipped")
