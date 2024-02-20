@@ -192,13 +192,13 @@ while(True):
             symbol_amt_to_buy=temp.copy()
             remote_command=emailing.readLatest()
             if("STOP" in remote_command.upper()):
-                update_git("Remote paused program")
-                times_for_email=emailing.send_update("Remote paused the program at "+str(dt.now()), 0)
+                #update_git("Remote paused program")
+                times_for_email=emailing.send_update("Remote paused the program at "+str(dt.now()), 31)
                 print("\033cRemote paused program")
                 while(True):
                     remote_command=emailing.readLatest()
                     if(not "STOP" in remote_command.upper()):
-                        times_for_email=emailing.send_update("Remote continued the program at "+str(dt.now()),0)
+                        times_for_email=emailing.send_update("Remote continued the program at "+str(dt.now()),31)
                         break
                     else:
                         sleep(60)
@@ -243,13 +243,13 @@ while(True):
         print(31*" ", "\rBest sells complete: ", stocks_and_price)
         remote_command=emailing.readLatest()
         if("STOP" in remote_command.upper()):
-                update_git("Remote paused program")
-                times_for_email=emailing.send_update("Remote paused the program at "+str(dt.now()),0)
+                #update_git("Remote paused program")
+                times_for_email=emailing.send_update("Remote paused the program at "+str(dt.now()),31)
                 print("\033cRemote paused program")
                 while(True):
                     remote_command=emailing.readLatest()
                     if(not "STOP" in remote_command.upper()):
-                        times_for_email=emailing.send_update("Remote continued the program at "+str(dt.now()),0)
+                        times_for_email=emailing.send_update("Remote continued the program at "+str(dt.now()),31)
                         break
                     else:
                         sleep(60)
@@ -261,8 +261,8 @@ while(True):
         #sleep(5)
         # '''
         log_data("Buy orders: "+str(symbol_amt_to_buy)+",\n"+"Sell orders: "+str(stocks_and_price)+",\n"+"Cash: $"+str(cash)+",\n"+"Owned stocks: "+str(owned)+",\n"+"Time of log: "+str(dt.now())+";\n\n")
-        update_git("Program still running, set completed at "+str(dt.now()))
-        times_for_email=emailing.send_update("Buy orders: "+str(symbol_amt_to_buy)+",\n"+"Sell orders: "+str(stocks_and_price)+",\n"+"Program still running at "+str(dt.now()),times_for_email)
+        #update_git("Program still running, set completed at "+str(dt.now()))
+        times_for_email=emailing.send_update("Buy orders: "+str(symbol_amt_to_buy)+",\n"+"Sell orders: "+str(stocks_and_price)+",\n"+"Program still running at "+str(dt.now()),times_for_email,test)
         #a.to_wait()
         print("New set starting")
         sleep(3)
@@ -273,12 +273,12 @@ while(True):
         sleep(1.5)
         print("\033c", end="")
     except KeyboardInterrupt:
-        update_git("Program ended due to user at "+str(dt.now()))
-        times_for_email=emailing.send_update("Program ended by user",0)
+        #update_git("Program ended due to user at "+str(dt.now()))
+        times_for_email=emailing.send_update("Program ended by user at "+str(dt.now()),31)
         break
     except Exception as e:
-        update_git("Error occured at "+str(dt.now())+" \nError code: "+str(e))
-        times_for_email=emailing.send_update("Error happened in program, trying to continue",0)
+        #update_git("Error occured at "+str(dt.now())+" \nError code: "+str(e))
+        times_for_email=emailing.send_update("Error happened in program, trying to continue",31)
 
 
 

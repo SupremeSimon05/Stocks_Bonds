@@ -10,8 +10,11 @@ def log_data(data):
         with open("log.txt", "w") as f:
             f.write(data)
 
-def send_update(message, times_for_email):
-    if(times_for_email>=30):
+def send_update(message, times_for_email, test=False):
+    threshold=15
+    if(test):
+        threshold=0
+    if(times_for_email>=threshold):
         try:
             email = EmailSender(
                 host='smtp-mail.outlook.com',  # Update host
