@@ -31,9 +31,10 @@ def send_update(message, times_for_email, test=False):
                 html="<p>"+message+"</p>"
             )
             return 0
-            print("Emailed")
+            print("Emailed\n\n")
+
         except Exception as e:
-            print("Emailing failed because "+str(e)+". Skipping update")
+            print("Emailing failed because "+str(e)+". Skipping update\n\n")
             log_data("Emailing failed because "+str(e)+" at "+str(dt.now())+". Update skipped")
             return times_for_email+1
     else:
