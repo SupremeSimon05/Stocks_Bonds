@@ -32,7 +32,7 @@ def send_update(message, times_for_email, test=False):
             return 0
         except Exception as e:
             print("Emailing failed because "+str(e)+". Skipping update")
-            log_data("Emailing failed because "+str(e)+" at "+dt.now()+". Update skipped")
+            log_data("Emailing failed because "+str(e)+" at "+str(dt.now())+". Update skipped")
             return times_for_email+1
     else:
         return times_for_email+1
@@ -59,6 +59,6 @@ def readLatest():
     except Exception as e:
         #This kinda a dangerous line, but I'm greedy so I want monies quick
         print("Remote failed because "+str(e)+". Skipping control") 
-        log_data("Remote failed because "+str(e)+" at "+dt.now()+". Control skipped")
+        log_data("Remote failed because "+str(e)+" at "+str(dt.now())+". Control skipped")
         return "Remote Failed"
 
