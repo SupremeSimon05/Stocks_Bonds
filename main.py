@@ -78,6 +78,9 @@ print("\033cLogging in...\r", end="")
 rh.authentication.login()
 print(12*" ", "\rLogged in")
 test=int(input("Just testing? (0,1) "))
+mass=0
+if(not test):
+    mass = int(input("More than one of each? (Not suggested) (0,1)"))
 times_for_email=0
 while(True):
     try:
@@ -181,7 +184,10 @@ while(True):
                     break
                 for to_buy in to_buys:
                     if(symbol_price[to_buy]<cash):
-                        symbol_amt_to_buy[to_buy]+=1
+                        if(mass):
+                            symbol_amt_to_buy[to_buy]+=1
+                        else:
+                            symbol_amt_to_buy[to_buy]=1
                         cash-=symbol_price[to_buy]
                     else:
                         cash=0
