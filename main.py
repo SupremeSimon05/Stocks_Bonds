@@ -166,7 +166,7 @@ while(True):
                 for order in orders:
                     if(to_buy==get_symbol_from_instrument_url(order['instrument'])):
                         has_traded=True
-                        if(order["state"]=="filled" and order["side"]=="buy"):
+                        if(order["state"]=="filled" and order["side"]=="sell"):
                             if((dt.now()-dt.strptime(order['last_transaction_at'], "%Y-%m-%dT%H:%M:%SZ")).total_seconds()/3600>24):
                                 temp.append(to_buy)
                         break
@@ -210,8 +210,9 @@ while(True):
                         sleep(60)
             print(23*" ", "\rPlacing order(s) for: ", symbol_amt_to_buy, "...\r", end = "")
             for symbol in symbol_amt_to_buy:
-                order = rh.orders.order(symbol, symbol_amt_to_buy[symbol], "buy", limitPrice=symbol_price[symbol]-0.01, timeInForce="gtc")
-                pass
+                if(test):
+                    order = rh.orders.order(symbol, symbol_amt_to_buy[symbol], "buy", limitPrice=symbol_price[symbol]-0.01, timeInForce="gtc")
+                    pass
             print((len(str(symbol_amt_to_buy))+26)*" ", "\rOrder(s) placed: ", symbol_amt_to_buy)
         print("Getting current positions...\r", end="")
         owned_to_how_much={}
