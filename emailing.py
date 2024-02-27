@@ -26,7 +26,7 @@ def send_update(message, times_for_email, test=False):
             email.send(
                 subject="No Subject",
                 sender="stock_market_scheme@outlook.com",
-                receivers=['6037314818@txt.att.net'],
+                receivers=['simonhchampney@gmail.com'],
                 text=message,
                 html="<p>"+message+"</p>"
             )
